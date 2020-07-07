@@ -1,5 +1,6 @@
 #![allow(unused)]
 use std::{fs,error::Error};
+#[derive(PartialOrd, PartialEq, Debug)]
 pub struct Config<'a> {
     query: &'a str,
     filename: &'a str,
@@ -21,4 +22,16 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     let contents = fs::read_to_string(config.filename)?;
     println!("With text:\n{}", contents);
     Ok(())
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    #[should_panic]
+    fn it_should_instantiate() {
+        let test_vector: Vec<String> = Vec::new();
+        Config::new(&test_vector).unwrap();
+    }
 }

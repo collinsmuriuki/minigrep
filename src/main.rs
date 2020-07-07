@@ -3,7 +3,7 @@ use std::{env,fs,process};
 fn main() {
     let args: Vec<String> = env::args().collect();
     let config = Config::new(&args).unwrap_or_else(|err| {
-        println!("Problem in parsing arguments, {}", err);
+        eprintln!("Problem in parsing arguments, {}", err);
         process::exit(1);
     });
 

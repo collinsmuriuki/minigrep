@@ -1,6 +1,6 @@
 #![allow(unused)]
 use std::{fs,error::Error};
-#[derive(PartialOrd, PartialEq, Debug)]
+#[derive(Debug)]
 pub struct Config<'a> {
     query: &'a str,
     filename: &'a str,

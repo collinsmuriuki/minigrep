@@ -11,21 +11,14 @@ fn main() {
 
     println!("With rext \n{}", contents);
 }
-#[derive(Clone)]
-struct Config {
-    query: String,
-    filename: String,
-}
-
-impl Config {
-    pub fn new(query: String, filename: String) -> Config {
-        Config { query, filename }
-    }
+struct Config<'a> {
+    query: &'a str,
+    filename: &'a str,
 }
 
 fn parse_config(args: &[String]) -> Config {
-    let query = args[1].clone();
-    let filename = args[2].clone();
+    let query = &args[1];
+    let filename = &args[2];
 
-    Config::new(query, filename)
+    Config { query, filename }
 }

@@ -17,9 +17,15 @@ struct Config {
     filename: String,
 }
 
+impl Config {
+    pub fn new(query: String, filename: String) -> Config {
+        Config { query, filename }
+    }
+}
+
 fn parse_config(args: &[String]) -> Config {
     let query = args[1].clone();
     let filename = args[2].clone();
 
-    Config { query, filename }
+    Config::new(query, filename)
 }

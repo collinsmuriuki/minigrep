@@ -19,6 +19,7 @@ cargo build
 
 ## Usage
 Accepts two required arguments.
+Optional environmental variable to turn on case insensitivity: `CASE_SENSITIVITY=1`
 ```sh
 cargo run <search_term> <example-filename.txt>
 ```

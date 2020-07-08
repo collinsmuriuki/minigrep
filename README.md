@@ -18,9 +18,9 @@ cargo build
 ```
 
 ## Usage
-
+Accepts two required arguments.
 ```sh
-cargo run searchstring example-filename.txt
+cargo run <search_term> <example-filename.txt>
 ```
 
 ## Run tests

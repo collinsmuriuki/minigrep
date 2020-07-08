@@ -8,7 +8,7 @@ pub struct Config<'a> {
 }
 
 impl<'a> Config<'a> {
-    pub fn new(args: &[String]) -> Result<Config, &'a str> {
+    pub fn new(args: &[String]) -> Result<Config, &str> {
         if args.len() < 3 {
             return Err("not enough arguments");
         }

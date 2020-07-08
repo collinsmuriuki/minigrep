@@ -1,10 +1,11 @@
 #![allow(unused)]
-use std::{fs,error::Error};
+use std::{fs,env,error::Error};
 
 #[derive(Debug)]
 pub struct Config<'a> {
     query: &'a str,
     filename: &'a str,
+    pub case_sensitive: bool,
 }
 
 impl<'a> Config<'a> {
@@ -14,14 +15,22 @@ impl<'a> Config<'a> {
         }
         let query = &args[1];
         let filename = &args[2];
+        let case_sensitive = env::var("CASE_SENSITIVE").is_err();
 
-        Ok(Config { query, filename })
+        Ok(Config { query, filename, case_sensitive })
     }
 }
 
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     let contents = fs::read_to_string(config.filename)?;
-    for line in search(&config.query, &contents) {
+
+    let results = if config.case_sensitive {
+        search(&config.query, &contents)
+    } else {
+        search_case_insensitive(&config.query, &contents)
+    };
+
+    for line in results {
         println!("{}", line);
     }
     Ok(())
